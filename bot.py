@@ -80,11 +80,6 @@ class Bot(Client):
                 self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the DBCHANNELS Value, Current Value {DBCHANNELS[i]}")
                 sys.exit()
         
-        await self.send_message(
-            chat_id=OWNER_ID,
-            text="Bot has started! 😉"
-        )
-
         initadmin = await full_adminbase()
         for x in initadmin:
             if x in ADMINS:
