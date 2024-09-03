@@ -79,7 +79,7 @@ UPI_ID = os.environ.get("UPI_ID", " ")
 #UPI QR CODE IMAGE
 UPI_IMAGE_URL = os.environ.get("UPI_IMAGE_URL", "")
 #SCREENSHOT URL of ADMIN for verification of payments
-SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", "")
+SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", f"t.me/{OWNER_TAG}")
 #Time and its price
 #7 Days
 PRICE1 = os.environ.get("PRICE1", "30 rs")
@@ -101,13 +101,17 @@ FORCE_MSG = os.environ.get("FORCE_MSG", "Hello {first}\n\n<b>You need to join in
 PROTECT_CONTENT = True if os.environ.get("PROTECT_CONTENT", "FALSE") == "TRUE" else False
 #custom caption 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
-#you can add admin inside the bot
+#you can add admin inside the bot(bug right now will fix later)
+
+#add admins with space seperated
+# 7195990000 289371935 248979023
+ADMINS = os.environ.get("ADMINS").split()
+
 
 
 
 
 #no need to add anything from now on
-ADMINS = []
 ADMINS.append(OWNER_ID)
 
 LOG_FILE_NAME = "logs.txt"
