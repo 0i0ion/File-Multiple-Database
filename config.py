@@ -105,7 +105,7 @@ CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 
 #add admins with space seperated
 # 7195990000 289371935 248979023
-ADMINS = os.environ.get("ADMINS").split()
+ADMINS = os.environ.get("ADMINS", "").split()
 
 
 
