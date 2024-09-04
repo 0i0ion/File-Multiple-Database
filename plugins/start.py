@@ -12,7 +12,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from bot import Bot
 from config import ADMINS, FORCE_MSG, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, OWNER_TAG, PROTECT_CONTENT, START_MSG, CUSTOM_CAPTION, OWNER_ID, SHORTLINK_API_URL, SHORTLINK_API_KEY, U_S_E_P, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID
 from helper_func import encode, get_readable_time, increasepremtime, subscribed, subscribed2, decode, get_messages, get_shortlink, get_verify_status, update_verify_status, get_exp_time
-from database.database import add_admin, add_user, del_admin, full_adminbase, full_userbase, present_admin, present_user, del_user
+from database.database import add_admin, add_user, del_admin, full_adminbase, full_userbase, gen_new_count, get_clicks, inc_count, present_admin, present_hash, present_user, del_user
 
 SECONDS = TIME 
 TUT_VID = f"{TUT_VID}"
@@ -59,6 +59,12 @@ async def start_command(client: Client, message: Message):
                 return
             temp_msg = await message.reply("Please wait... 🫷")
             _string = await decode(base64_string)
+            if not await present_hash(base64_string):
+                try:
+                    await gen_new_count(base64_string)
+                except:
+                    pass
+            await inc_count(base64_string)
             if _string.find("r") == 0:
                 argument = _string.split("+")
                 if len(argument) == 6:
@@ -189,6 +195,12 @@ async def start_command(client: Client, message: Message):
                     return
             except:
                     newbase64_string = await encode(f"r+f+{_string}")
+                    if not await present_hash(newbase64_string):
+                        try:
+                            await gen_new_count(newbase64_string)
+                        except:
+                            pass
+                    clicks = await get_clicks(newbase64_string)
                     newLink = f"https://t.me/{client.username}?start={newbase64_string}"
                     link = await get_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY,f'{newLink}')
                     if USE_PAYMENT:
