@@ -14,6 +14,7 @@ I Guess This Will Be Usefull For Many People.....😇.
 1. added code system. You should provide users the code with bot tag instead of the link. If your bot got banned it will be tough to change every link of your channel.
 2. user need to use `/ch2l` command for converting to link.
 3. fixed single force sub channel issue.
+4. merged all the stuff from main repo.
 
 ### Features
 - Fully customisable.
